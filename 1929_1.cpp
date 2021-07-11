@@ -3,32 +3,47 @@
 
 #include <iostream>
 #include <cmath>
+
 int main() {
 
 	int M, N;
 	std::cin >> M >> N;
 
-	for (int i = M; i <= N; i++) {
+	bool* arr = new bool[N + 1];
 
-		int gcd = 1;
+	for (int i = 0; i < N + 1; i++) {
+		arr[i] = true;
+	}
 
-		if ((i > 1) && (i <= 3)) {
+	int j;
 
-			std::cout << i << '\n';
-		}
+	for (int i = 2; i < N + 1; i++) {
 
-		if (i > 3) {
+		if (arr[i]) {
 
-			for (int j = 2; j < std::sqrt(i); j++) {
+			if ((unsigned int)pow(i, 2) > 1000001) {
 
-				if (i % j == 0)
-					gcd = j;
+				break;
+			}
 
-				if ((j > 2) && (gcd == 1)) {
-					std::cout << i << '\n';
-					break;
+			else {
+
+				for (j = (int)pow(i, 2); j < N + 1;) {
+					
+					arr[j] = false;
+					j = j + i;
 				}
 			}
 		}
 	}
+
+	if (M == 1) M++;
+
+	for (int i = M; i < N + 1; i++) {
+
+		if (arr[i] && i >= M)
+			std::cout << i << '\n';
+	}
+
+	delete[]arr;
 }
