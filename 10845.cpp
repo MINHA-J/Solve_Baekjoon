@@ -1,5 +1,5 @@
 // 실전 압축 성장 (자료구조편)
-// 스택
+// 큐
 
 #include <iostream>
 #include <vector>
@@ -14,7 +14,7 @@ int main() {
 
 	for (int i = 0; i < N; i++) {
 
-		string command; // char로 하니까 당연히 안 되죠..
+		string command;
 		cin >> command;
 
 		if (command == "push") {
@@ -29,10 +29,8 @@ int main() {
 
 			if (V.size() == 0) cout << -1 << "\n";
 			else {
-				int n;
-				n = V.size();
-				cout << V[n - 1] << "\n";
-				V.erase(V.end() - 1);
+				cout << *V.begin() << "\n";
+				V.erase(V.begin());
 			}
 		}
 
@@ -48,15 +46,21 @@ int main() {
 			else cout << 1 << "\n";
 		}
 
-		else if (command == "top") {
+		else if (command == "front") {
 
 			if (V.size() == 0) cout << -1 << "\n";
-			else {
-				int n;
-				n = V.size();
-				cout << V[n-1] << "\n";
-			}
+			else cout << *V.begin() << "\n";
+		}
+
+		else if (command == "back") {
+
+			if (V.size() == 0) cout << -1 << "\n";
+			else
+				cout << *(V.end() - 1) << "\n";
 		}
 	}
+
+	return 0;
 }
 
+// 맞았습니다!!
