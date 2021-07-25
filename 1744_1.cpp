@@ -21,8 +21,8 @@ int main() {
 		cin >> x;
 
 		if (x > 0) Plus.push_back(x);
-		if (x < 0) Minus.push_back(x);
-		if (x == 0) zero = true;
+		else if (x < 0) Minus.push_back(x);
+		else if (x == 0) zero = true;
 	}
 
 	sort(Plus.begin(), Plus.end());
@@ -38,7 +38,7 @@ int main() {
 
 			for (int i = 0; i < plus_size - 1; i += 2) {
 				
-				if ((Plus[i] == 1 && Plus[i + 1] == 1) || (Plus[i] == 1 && Plus[i + 1] == 2)) {
+				if (Plus[i] == 1 || Plus[i + 1] == 1) {
 					result += Plus[i] + Plus[i + 1];
 				}
 
@@ -53,7 +53,7 @@ int main() {
 
 				for (int i = 1; i < plus_size - 1; i += 2) {
 
-					if ((Plus[i] == 1 && Plus[i + 1] == 1) || (Plus[i] == 1 && Plus[i + 1] == 2)) {
+					if (Plus[i] == 1 || Plus[i + 1] == 1) {
 						result += Plus[i] + Plus[i + 1];
 					}
 
@@ -90,7 +90,7 @@ int main() {
 				result += 0;
 			}
 
-			else {
+			else if (!zero) {
 				result += Minus.back();
 			}
 		}
@@ -98,4 +98,4 @@ int main() {
 	cout << result;
 }
 
-// 이게 왜 안되는데
+// 헐 되따
