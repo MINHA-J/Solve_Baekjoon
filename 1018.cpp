@@ -1,6 +1,8 @@
 // 실전 압축 성장 (브루트포스편)
 // 체스판 다시 칠하기
 
+// I don't know
+
 #include <iostream>
 #include <vector>
 using namespace std;
