@@ -1,42 +1,46 @@
 // 실전 압축 성장 (브루트포스편)
 // 모든 순열
 
-// 다른 사람 코드
-
-#include <stdio.h>
+#include <iostream>
 #include <vector>
 using namespace std;
 
-int isVisited[9];
-int N;
-vector <int> v;
+#define MAX 8
+bool visited[MAX + 1];
+vector<int> elements;
+int n;
+void permutaiotn() {
+    if (elements.size() == n) {
+        for (auto e : elements) {
+            cout << e << " ";
+        }
+        cout << "\n";
+    }
+    else {
+        for (int i = 1; i <= n; i++) 
+        {
+            //cout << "현재 탐색 중인 i는 : " << i << "\n";
+            if (visited[i])
+            {
+                //cout << i << " 이미 true이다" << "\n";
+                continue;
+            }
+            visited[i] = true;
+            elements.push_back(i);
+            //cout << "현재 들어간 i는 : " << i << "\n";
+            permutaiotn();
+            visited[i] = false;
+            elements.pop_back();
+            //cout << "현재 빠진 i는 : " << i << "\n";
+        }
+    }
 
-void dfs() {
-
-	if (v.size() == N) {
-
-		for (int i = 0; i < v.size(); i++)
-			printf("%d ", v[i]);
-		printf("\n");
-	}
-
-	for (int i = 1; i <= N; ++i) {
-
-		if (!isVisited[i]) {
-
-			isVisited[i] = 1;
-			v.push_back(i);
-			dfs();
-			isVisited[i] = 0;
-			v.pop_back();
-		}
-	}
 }
 
-int main() {
-
-	scanf("%d", &N);
-	dfs();
+int main(void) {
+    cin >> n;
+    permutaiotn();
+    return 0;
 }
 
 /* 
